@@ -1,68 +1,91 @@
 import React, { Component } from 'react';
+import './style.css';
 
 class TaskForm extends Component {
   state = {
     title: '',
-    description: '',
     deadline: '',
-    priority: 'Low',
+    priority: '',
+    isVisible: false,
+    errorMessage: '',
+  };
+
+  toggleVisibility = () => {
+    this.setState((prevState) => ({
+      isVisible: !prevState.isVisible,
+      errorMessage: '',
+    }));
   };
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
+  handleTaskSubmission = async (e) => {
+    e.preventDefault(); // Prevent the form from submitting the traditional way
 
-    // Create a task object from the form data
-    const newTask = {
-      title: this.state.title,
-      description: this.state.description,
-      deadline: this.state.deadline,
-      priority: this.state.priority,
+    const { title, deadline, priority } = this.state;
+    const taskData = {
+      title,
+      deadline,
+      priority: parseInt(priority, 10), // Convert priority to an integer
     };
 
-    // Send the task data to your backend API or handle it as needed
-    console.log('New Task:', newTask);
+    try {
+      const response = await fetch('http://localhost:8080/api/submit-task', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(taskData),
+      });
 
-    // Reset the form fields
-    this.setState({
-      title: '',
-      description: '',
-      deadline: '',
-      priority: 'Low',
-    });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      // Handle successful submission if needed
+      console.log('Task saved successfully');
+      // Reset the form fields
+      this.setState({
+        title: '',
+        deadline: '',
+        priority: '',
+        errorMessage: '',
+      });
+      this.toggleVisibility();  // Hide the form
+      window.location.reload(); 
+    }
+    catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+      this.setState({ errorMessage: 'Error saving task. Please try again.' });
+    }
   };
 
   render() {
-    const { title, description, deadline, priority } = this.state;
+    const { title, deadline, priority, isVisible, errorMessage } = this.state;
+
     return (
-      <div>
-        <h2>Task Form</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label>Title:</label>
-          <input type="text" name="title" value={title} onChange={this.handleChange} />
-          <br />
+      <div className='task-form'>
+        {errorMessage && <p>{errorMessage}</p>}
+        {isVisible ? (
+          <form onSubmit={this.handleTaskSubmission}>
+            <label>Title</label>
+            <input type="text" name="title" value={title} onChange={this.handleChange} />
+            <br />
 
-          <label>Description:</label>
-          <textarea name="description" value={description} onChange={this.handleChange} />
-          <br />
+            <label>Deadline</label>
+            <input type="date" name="deadline" value={deadline} onChange={this.handleChange} />
+            <br />
 
-          <label>Deadline:</label>
-          <input type="date" name="deadline" value={deadline} onChange={this.handleChange} />
-          <br />
-
-          <label>Priority:</label>
-          <select name="priority" value={priority} onChange={this.handleChange}>
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
-          <br />
-
-          <button type="submit">Save Task</button>
-        </form>
+            <label>Priority</label>
+            <input type="number" name="priority" value={priority} onChange={this.handleChange} />
+            <br />
+            <button type="submit">Save Task</button>
+          </form>
+        ) : (
+          <button type="submit" onClick={this.toggleVisibility}>Add Task</button>
+        )}
       </div>
     );
   }

@@ -1,23 +1,21 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
-import TaskList from './components/TaskList';
-import TaskDetails from './components/TaskDetails';
-import TaskForm from './components/TaskForm'; // Import the TaskForm component
-import TaskDependencies from './components/TaskDependencies';
+import "./components/style.css"
+import CompletedTasks from './components/CompletedTasks';
+import Deadlines from './components/deadline';
+
+
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<TaskList />} />
-            <Route path="/tasks/:id" element={<TaskDetails />} />
-            <Route path="/add-task" element={<TaskForm />} />
-            <Route path="/task-dependencies" element={<TaskDependencies />} />
-          </Route>
-        </Routes>
+          <Route path="/" element={<Home />}/>
+            <Route path="/completed-tasks" element={<CompletedTasks/>} />
+            <Route path="/deadlines" element={<Deadlines/>} />
+     </Routes>
       </div>
     </Router>
   );

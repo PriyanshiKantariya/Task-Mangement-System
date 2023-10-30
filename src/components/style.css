@@ -1,131 +1,212 @@
-/* Header styles */
 .header {
-    background-color: black;
-    border: 1px solid #000;
-    padding: 20px;
-    color: white;
-  }
+  background-color: black;
+  color: white;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.home{
+  width: 100%;
+  height: 100%;
+} 
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+
+.main-content{
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+html, body, .App, #root{
+  height: 100%;
+}
+.sidebar{
+  background-color: #333;
+  width: 20%;
+  height: 90%;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.task-workspace{
+  flex-grow: 1;
+  height: 90%;
+}
+.menuitem{
+  display: flex;
+  justify-content: left;
+
+}
+
+
+/* Sidebar header styles */
+.sidebar h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+/* Sidebar menu items */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+
+}
+
+/* Sidebar menu item links */
+.sidebar ul li {
+  margin-bottom: 10px;
+  border-bottom: 1.5px solid #555; /* Add an underline between items */
+  padding-bottom: 5px; 
   
-  h1 {
-    color: aqua;
-    text-align: center;
-  }
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  display: block;
+  transition: color 0.3s;
   
-  /* Reset styles */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* Ensure consistent box sizing */
-  }
-  
-  /* Sidebar styles */
-  .sidebar {
-    width: 250px;
-    height: 100%;
-    background-color: #333;
-    color: #fff;
-    text-align: left;
-    padding: 20px;
-    box-sizing: border-box;
-    position: fixed; /* Fix the sidebar in place */
-  }
-  
-  .sidebar a {
-    display: block;
-    text-decoration: none;
-    color: #fff;
-    padding: 20px 0;
-    border-bottom: 1px solid #555;
-  }
-  
-  /* Add Task button styles */
-  .add-task-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .add-task-button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* TaskWorkspace styles */
-  .task-workspace {
-    position: absolute;
-    top: 80px; /* Adjust this value based on your header's height */
-    left: 250px; /* Adjust this value based on your sidebar width */
-    width: calc(100% - 250px); /* Calculate the width to avoid overlap */
-    height: calc(100vh - 80px); /* Adjust for the header's height */
-    overflow: auto; /* Add scroll if needed */
-    padding: 30px; /* Add padding to create space within the workspace */
-    z-index: 1; /* Bring the task workspace to the front */
-  }
-  
-  /* TaskForm styles */
-  .task-form {
-    background-color: aqua;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    position: absolute;
-    top: 80px; /* Adjust this value based on your header's height */
-    right: 0;
-    width: 250px; /* Adjust this value based on the desired form width */
-    height: calc(100vh - 80px); /* Adjust for the header's height */
-    padding: 20px; /* Add padding to create space within the form */
-  }
-  
-  /* Form elements */
-  .task-form label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-  }
-  
-  .task-form input[type="text"],
-  .task-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  .task-form select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  .task-form button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
-  .task-form button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Workspace and main content styles */
-  .main-content {
-    display: flex;
-    align-items: flex-start;
-  }
-  
-  .workspace {
-    flex-grow: 2;
-  }
-  
-  
+}
+
+/* Sidebar menu item link hover effect */
+.sidebar ul li a:hover {
+  color: #00a6eb;
+}
+/* style.css */
+
+.task-form {
+  background-color: #c2c8db;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 300px;
+  height: max-content;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 1;
+}
+
+.task-form h2 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.task-form form {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+}
+
+label {
+  font-weight: bold;
+  margin: 5px 0;
+  display: block;
+}
+
+
+button[type="submit"] {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 3px 0;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+/* AddTaskButton.css */
+
+.add-task-button {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  margin-left: 89%;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-task-button:hover {
+  background-color: #0056b3;
+}
+/* Add this CSS in your style.css file or include it in your component's CSS */
+
+/* Style the box containing the to-do list */
+/* Style the container for the to-do list */
+.todo-list {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 50px auto;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.todo-list h2 {
+  text-align: center;
+  color: #333;
+  border-bottom: 2px solid #f1f1f1;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.todo-list ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.todo-list li {
+  padding: 10px;
+  border: 1px solid #f1f1f1;
+  margin: 8px 0;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-list li:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+/* Style the input for adding a new task */
+.todo-input {
+  width: 100%; /* Expand the input to the full width of the box */
+  padding: 12px; /* Slightly larger padding inside the input */
+  font-size: 14px; /* Font size for the input */
+  border: 2px solid #e1e1e1; /* Slightly thicker border */
+  border-radius: 6px; /* Rounded corners for the input */
+  outline: none; /* Remove default outline on focus */
+  transition: border 0.3s ease; 
+  /* Smooth transition for the border */
+}
+
+.todo-input:focus {
+  border-color: #007BFF; /* Highlight border on focus */
+}
+input{
+  padding: 10px; /* Spacing inside the input */
+  font-size: 16px; /* Font size for the input */
+  border: 2px solid #130303; /* Border for the input */
+  border-radius: 4px; /* Rounded corners for the input */
+}
+
+/* Additional styling for your to-do list items, as needed */

@@ -1,9 +1,10 @@
 import React from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
-import TaskWorkspace from './TaskWorkspace'; // Import the workspace component
 import './style.css';
-const Home = () => {
+import TodoList from './To-do';
+
+const Deadlines = () => {
     return (
         <div className="home">
             <div className="header">
@@ -12,12 +13,12 @@ const Home = () => {
 
             <div className="main-content">
                  <Sidebar/>
-                
-                    <TaskWorkspace />
+                    <TodoList />
+
              
             </div>
         </div>
     );
 }
 
-export default Home;
+export default Deadlines;
